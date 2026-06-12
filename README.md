@@ -2,7 +2,7 @@
 
 > **Folia fork** — Typewriter with [Folia](https://github.com/PaperMC/Folia) support. One jar runs on **both Paper and Folia**. Upstream: [gabber235/TypeWriter](https://github.com/gabber235/Typewriter).
 
-Typewriter is a plugin for Minecraft servers that enables you to create immersive and interactive gameplay experiences, such as custom quests, NPC dialogues, and cinematic events, all while maintaining a simple and powerful interface.
+Typewriter is a plugin for **Paper** and **Folia** Minecraft servers that enables you to create immersive and interactive gameplay experiences, such as custom quests, NPC dialogues, and cinematic events, all while maintaining a simple and powerful interface.
 
 ## Folia Support
 
