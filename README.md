@@ -1,8 +1,23 @@
 ![TypeWriter Logo](https://github.com/gabber235/TypeWriter/blob/develop/design/Banner/TW_Banner_Transparant.png?raw=true)
 
-[![Discord](https://img.shields.io/discord/1054708062520360960?label=discord&logo=discord&logoColor=white)](https://discord.gg/HtbKyuDDBw)
+> **Folia fork** — drop-in Typewriter for [Folia](https://github.com/PaperMC/Folia) threaded-region servers. Upstream: [gabber235/TypeWriter](https://github.com/gabber235/Typewriter).
 
-Typewriter is a plugin for Paper Minecraft servers that enables you to create immersive and interactive gameplay experiences, such as custom quests, NPC dialogues, and cinematic events, all while maintaining a simple and powerful interface.
+Typewriter is a plugin for Minecraft servers that enables you to create immersive and interactive gameplay experiences, such as custom quests, NPC dialogues, and cinematic events, all while maintaining a simple and powerful interface.
+
+## Folia Support
+
+This fork patches Typewriter to run on **Folia** (threaded region scheduling). Key changes:
+
+- MCCoroutine replaced with `mccoroutine-folia` artifacts
+- Async dispatchers replaced with region-aware dispatchers (`globalRegionDispatcher`, `entityDispatcher`, `regionDispatcher`)
+- Scheduler calls updated to use Folia's `RegionScheduler` / `GlobalRegionScheduler` APIs
+- All entity/block operations dispatched to the owning region
+
+### Compatibility
+
+| Typewriter | Folia |
+|---|---|
+| develop | 1.21.x |
 
 ## Features
 
@@ -14,35 +29,17 @@ Typewriter is a plugin for Paper Minecraft servers that enables you to create im
 
 ## Getting Started
 
-For detailed setup instructions, visit the [Installation Guide](https://docs.typewritermc.com/docs/getting-started/installation).
+For detailed setup instructions, visit the original [Installation Guide](https://docs.typewritermc.com/docs/getting-started/installation). Use this fork's jar in place of the upstream release.
 
-### Sponsors
+> **Note:** This fork is community-maintained. For upstream features/bugs unrelated to Folia, report to [gabber235/TypeWriter](https://github.com/gabber235/Typewriter/issues).
 
-<!-- sponsors --><a href="https://github.com/myiume"><img src="https:&#x2F;&#x2F;github.com&#x2F;myiume.png" width="60px" alt="User avatar: Myiume" /></a><a href="https://github.com/iamyellowhead"><img src="https:&#x2F;&#x2F;github.com&#x2F;iamyellowhead.png" width="60px" alt="User avatar: yellowhead" /></a><a href="https://github.com/GuavaDealer"><img src="https:&#x2F;&#x2F;github.com&#x2F;GuavaDealer.png" width="60px" alt="User avatar: GuavaDealer" /></a><a href="https://github.com/WreckedAP"><img src="https:&#x2F;&#x2F;github.com&#x2F;WreckedAP.png" width="60px" alt="User avatar: Wrecked" /></a><a href="https://github.com/RenaudRl"><img src="https:&#x2F;&#x2F;github.com&#x2F;RenaudRl.png" width="60px" alt="User avatar: BTC STUDIO" /></a><a href="https://github.com/Keeth-Christy"><img src="https:&#x2F;&#x2F;github.com&#x2F;Keeth-Christy.png" width="60px" alt="User avatar: Keeth" /></a><a href="https://github.com/ItsJustJar"><img src="https:&#x2F;&#x2F;github.com&#x2F;ItsJustJar.png" width="60px" alt="User avatar: ItsJustJar" /></a><!-- sponsors -->
+## Building
 
-Thanks to the following sponsors for supporting this project. Without their support, this project would not be possible. If you are using Typewriter for your server, and are making money from it, please consider [sponsoring](https://github.com/sponsors/gabber235) the project.
+```bash
+./gradlew :engine:engine-paper:shadowJar
+```
 
-### Examples
-
-Here are a few examples of typewriter:
-<video src="https://github.com/user-attachments/assets/b5c7ecb7-557b-41ac-ba7b-82c6a46b79a8" width="55%" height="auto" controls>Your browser does not support the video tag or the video doesn't exist anymore. <a href="https://github.com/user-attachments/assets/b5c7ecb7-557b-41ac-ba7b-82c6a46b79a8">Click here to view the video</a></video>
-
-A complete demo of almost all features that typewriter has to offer.
-
-![TW-Panel-demo](https://github.com/user-attachments/assets/7c7442bf-be2c-47d7-9f6d-a60d02836cdf)
-
-A demo of the panel itself
-
-<details><summary><h3>💡Show more</h3></summary>
-
-  ![TW-Dialogue](https://github.com/user-attachments/assets/3790df6a-c5e3-4357-90a6-cb529ae7c65d)
-  ![TW-Sequence](https://github.com/user-attachments/assets/792bc93e-cfa6-4804-8ee0-5cb623a822d1)
-  ![TW-Static](https://github.com/user-attachments/assets/24c30f91-3a8f-4091-916f-ba227539813d)
-  ![TW-Panel](https://github.com/user-attachments/assets/c61088b5-19d7-44a4-959a-a7bcd2070720)
-
-
-
-</details>
+Output: `engine/engine-paper/build/libs/`
 
 ## For Administrators
 
@@ -65,4 +62,5 @@ See [LICENSE](LICENSE) to see the full text.
 
 ## Credits
 
-- [Aarthificial](https://www.youtube.com/@aarthificial) For the inspiration on the base logic.
+- [gabber235](https://github.com/gabber235) — original Typewriter plugin
+- [Aarthificial](https://www.youtube.com/@aarthificial) — inspiration for the base logic
