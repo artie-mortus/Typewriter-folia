@@ -1,23 +1,26 @@
 ![TypeWriter Logo](https://github.com/gabber235/TypeWriter/blob/develop/design/Banner/TW_Banner_Transparant.png?raw=true)
 
-> **Folia fork** — drop-in Typewriter for [Folia](https://github.com/PaperMC/Folia) threaded-region servers. Upstream: [gabber235/TypeWriter](https://github.com/gabber235/Typewriter).
+> **Folia fork** — Typewriter with [Folia](https://github.com/PaperMC/Folia) support. One jar runs on **both Paper and Folia**. Upstream: [gabber235/TypeWriter](https://github.com/gabber235/Typewriter).
 
 Typewriter is a plugin for Minecraft servers that enables you to create immersive and interactive gameplay experiences, such as custom quests, NPC dialogues, and cinematic events, all while maintaining a simple and powerful interface.
 
 ## Folia Support
 
-This fork patches Typewriter to run on **Folia** (threaded region scheduling). Key changes:
+This fork patches Typewriter to run on **Folia** (threaded region scheduling) while staying fully compatible with regular **Paper**. Key changes:
 
-- MCCoroutine replaced with `mccoroutine-folia` artifacts
-- Async dispatchers replaced with region-aware dispatchers (`globalRegionDispatcher`, `entityDispatcher`, `regionDispatcher`)
-- Scheduler calls updated to use Folia's `RegionScheduler` / `GlobalRegionScheduler` APIs
-- All entity/block operations dispatched to the owning region
+- MCCoroutine swapped to the `mccoroutine-folia` artifacts
+- Work routed through region-aware dispatchers (`globalRegionDispatcher`, `entityDispatcher`, `regionDispatcher`)
+- Suspending event listeners mapped to the scheduler that owns each event (player → entity scheduler, block → owning region, rest → global region)
+- `folia-supported: true` declared in the plugin metadata
+
+On a regular Paper server, MCCoroutine detects that Folia is absent and every region dispatcher falls back to the main thread — identical behavior to upstream Typewriter. No separate Paper build is needed.
 
 ### Compatibility
 
-| Typewriter | Folia |
-|---|---|
-| develop | 1.21.x |
+| Server | Version | Notes |
+|---|---|---|
+| Folia | 1.21.x | Threaded regions, fully region-aware |
+| Paper | 1.21.x | Falls back to main-thread scheduling, same as upstream |
 
 ## Features
 
